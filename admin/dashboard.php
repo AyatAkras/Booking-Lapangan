@@ -32,6 +32,7 @@ $total_user = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE rol
 
         <div>
             <a href="dashboard.php" class="btn btn-warning btn-sm me-2">Dashboard</a>
+            <a href="lapangan.php" class="btn btn-light btn-sm me-2">Kelola Lapangan</a>
             <a href="booking.php" class="btn btn-light btn-sm me-2">Kelola Booking</a>
             <a href="../logout.php" class="btn btn-danger btn-sm">Logout</a>
         </div>
@@ -85,7 +86,11 @@ $total_user = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE rol
             <h4 class="fw-bold">Menu Admin</h4>
             <p class="text-muted">Gunakan menu berikut untuk mengelola sistem booking lapangan.</p>
 
-            <a href="booking.php" class="btn btn-primary rounded-pill">
+            <a href="lapangan.php" class="btn btn-primary rounded-pill me-2">
+                Kelola Lapangan
+            </a>
+
+            <a href="booking.php" class="btn btn-success rounded-pill">
                 Kelola Booking
             </a>
         </div>

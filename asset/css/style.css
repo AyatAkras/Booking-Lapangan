@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #e8fff2, #ffffff);
+    min-height: 100vh;
+}
+
+.hero-card {
+    background-color: white;
+    border-radius: 25px;
+    padding: 35px;
+}
+
+.feature-box {
+    background-color: #f1fff6;
+    border-left: 5px solid #198754;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.feature-box p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.btn {
+    padding-left: 25px;
+    padding-right: 25px;
+}

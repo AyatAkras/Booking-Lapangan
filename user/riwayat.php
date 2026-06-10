@@ -54,6 +54,18 @@ $query = mysqli_query($conn, "
         </div>
     <?php } ?>
 
+    <?php if (isset($_GET['pesan']) && $_GET['pesan'] == 'batal_berhasil') { ?>
+        <div class="alert alert-success">
+            Booking berhasil dibatalkan.
+        </div>
+    <?php } ?>
+
+    <?php if (isset($_GET['pesan']) && $_GET['pesan'] == 'batal_gagal') { ?>
+        <div class="alert alert-danger">
+            Booking tidak dapat dibatalkan karena sudah diproses admin.
+        </div>
+    <?php } ?>
+
     <div class="card shadow border-0 rounded-4">
         <div class="card-body p-4">
             <div class="table-responsive">
@@ -66,8 +78,10 @@ $query = mysqli_query($conn, "
                             <th>Jam</th>
                             <th>Total Harga</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <?php 
                         $no = 1;
@@ -75,13 +89,22 @@ $query = mysqli_query($conn, "
                         ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
+
                                 <td>
                                     <?php echo $data['nama_lapangan']; ?><br>
                                     <small class="text-muted"><?php echo $data['jenis_lapangan']; ?></small>
                                 </td>
+
                                 <td><?php echo $data['tanggal_booking']; ?></td>
-                                <td><?php echo $data['jam_mulai']; ?> - <?php echo $data['jam_selesai']; ?></td>
-                                <td>Rp<?php echo number_format($data['total_harga'], 0, ',', '.'); ?></td>
+
+                                <td>
+                                    <?php echo $data['jam_mulai']; ?> - <?php echo $data['jam_selesai']; ?>
+                                </td>
+
+                                <td>
+                                    Rp<?php echo number_format($data['total_harga'], 0, ',', '.'); ?>
+                                </td>
+
                                 <td>
                                     <?php if ($data['status_booking'] == 'pending') { ?>
                                         <span class="badge bg-warning text-dark">Pending</span>
@@ -93,12 +116,24 @@ $query = mysqli_query($conn, "
                                         <span class="badge bg-secondary">Selesai</span>
                                     <?php } ?>
                                 </td>
+
+                                <td>
+                                    <?php if ($data['status_booking'] == 'pending') { ?>
+                                        <a href="batal_booking.php?id_booking=<?php echo $data['id_booking']; ?>" 
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Yakin ingin membatalkan booking ini?')">
+                                            Batalkan
+                                        </a>
+                                    <?php } else { ?>
+                                        <span class="text-muted">Tidak ada aksi</span>
+                                    <?php } ?>
+                                </td>
                             </tr>
                         <?php } ?>
 
                         <?php if (mysqli_num_rows($query) == 0) { ?>
                             <tr>
-                                <td colspan="6" class="text-center text-muted">
+                                <td colspan="7" class="text-center text-muted">
                                     Belum ada riwayat booking.
                                 </td>
                             </tr>
